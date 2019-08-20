@@ -9,10 +9,6 @@ var logger = require("morgan");
 var exphbs = require("express-handlebars");
 //----
 
-//Import routes
-var viewRoutes = require("./routes/view/index");
-var scrapeRoute = require("./routes/api/scrape");
-var articleRoutes = require("./routes/api/articles");
 
 //create express server
 var app = express();
@@ -33,7 +29,7 @@ app.use(express.static("public"));
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 //for deployment
-mongoose.connect(MONGODB_URI);
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 // for development
 // mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
@@ -42,22 +38,25 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 // ---
 
-//ROUTES ----
-//used for handlebars
-app.get("/", viewRoutes.fetchAll);
-app.get("/saved", viewRoutes.fetchSaved);
-//scraping route for NPR food
-app.get("/scrape", scrapeRoute.scrape);
-// Route for all Articles
-app.get("/articles", articleRoutes.all);
-// Route for deleting all Articles
-app.post("/articles", articleRoutes.deleteAll);
-// Route for specific Article and note
-app.get("/articles/:id", articleRoutes.findOne);
-// Route for updating save value
-app.post("/articles/saved/:id", articleRoutes.updateSave);
-// Route for saving & updating the Article's note
-app.post("/articles/:id", articleRoutes.postOne);
+//Import routes
+var routes = require("./routes");
+app.use(routes);
+// //ROUTES ----
+// //used for handlebars
+// app.get("/", viewRoutes.fetchAll);
+// app.get("/saved", viewRoutes.fetchSaved);
+// //scraping route for NPR food
+// app.get("/scrape", scrapeRoute.scrape);
+// // Route for all Articles
+// app.get("/articles", articleRoutes.all);
+// // Route for deleting all Articles
+// app.post("/articles", articleRoutes.deleteAll);
+// // Route for specific Article and note
+// app.get("/articles/:id", articleRoutes.findOne);
+// // Route for updating save value
+// app.post("/articles/saved/:id", articleRoutes.updateSave);
+// // Route for saving & updating the Article's note
+// app.post("/articles/:id", articleRoutes.postOne);
 //----
 
 var PORT = process.env.PORT || 3000;

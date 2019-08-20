@@ -32,7 +32,7 @@ $(document).on("click", ".savebtn", function() {
   // This runs a POST request to change the saved value
   $.ajax({
     method: "POST",
-    url: "/articles/saved/" + thisId,
+    url: "/api/articles/saved/" + thisId,
     data: {
       saved: true
     }

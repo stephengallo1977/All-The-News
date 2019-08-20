@@ -1,5 +1,5 @@
 body {
-    background: #e7d7a9;
+    background: lightblue;
   }
   
   .titleloc {
@@ -8,15 +8,15 @@ body {
   
   #header {
     text-align: center;
-    background: #7a3e48;
-    color: #e28743;
+    background: blue;
+    color: lightblue;
   }
   
   .card {
-    color: #b95836;
+    color:black;
   }
   
   #footer {
-    background: #e28743;
+    background: blue;
     text-align: right;
   }
