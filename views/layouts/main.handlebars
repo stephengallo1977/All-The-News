@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>NPR Food</title>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    {{!-- Bootstrap --}}
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./style.css">	
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+    {{!-- Header --}}
+    <div id="header">
+        <br>
+        <h1>News about Food!</h1>
+        <a class="homelink" href="/">Home</a> 
+        |
+        <a class="savedlink" href="/saved"> Saved Articles</a>
+        <br>
+        <br>
+            <button type="button" class="btn btn-secondary scrapebtn">Scrape</button>
+            <button type="button" class="btn btn-secondary clearbtn">Clear Articles</button>
+        <br>
+        <br>
+    </div>
+    {{{body}}}
+    {{!-- Footer --}}
+    <div id="footer">
+        <br>
+        <img src="./images/library.jpeg" alt="Get your news on!">
+        <br>
+    </div>
+</body>
+</html>
+
+
+{{!-- Javascript --}}
+<script type="text/javascript">
+// When you click the scrapebtn
+$(document).on("click", ".scrapebtn", function() {
+    //scrape articles
+  $.ajax({
+    method: "GET",
+    url: "/scrape",
+  }).then(function(data) {
+        console.log(data);
+        location.reload();
+    });
+});
+// When you click the clearbtn
+$(document).on("click", ".clearbtn", function() {
+    //delete all articles
+  $.ajax({
+    method: "POST",
+    url: "/articles"
+  }).then(function(data) {
+      console.log(data);
+        location.reload();
+    });
+});
+</script>
