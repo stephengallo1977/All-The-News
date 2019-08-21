@@ -1,6 +1,6 @@
 <br>
 <div class="container">
-    {{!-- Row 1 Articles --}}
+    {{!-- This is row 1 Articles --}}
     {{#each articles}}
       {{#if saved}}
         <div class="row">
@@ -26,7 +26,7 @@
         </div>
         <br>
 
-        <!-- Modal -->
+        <!-- Model -->
         <div class="modal fade" id="modal_{{this._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -65,10 +65,10 @@
 
 {{!-- Javascript --}}
 <script type="text/javascript">
-  // When you click the deletebtn button
+  // This is for clicking the deletebtn button
   $(document).on("click", ".deletebtn", function() {
     var thisId = $(this).attr("data-id");
-    // Run a POST request to change the saved value
+    // This runs a POST request to change the saved value
     console.log(thisId);
     $.ajax({
       method: "POST",
@@ -80,20 +80,20 @@
         location.reload();
     });
   });
-// Whenever someone clicks viewnote button
+// This is for whenever someone clicks the viewnote button
 $(document).on("click", ".viewnote", function() {
   
   // Grab the id associated with the article from the submit button
   var thisId = $(this).attr("data-id");
   $("#notes").empty(); 
-  // Now make an ajax call for the Article
+  // Makes an ajax call for the Article
   $.ajax({
     method: "GET",
     url: "/articles/" + thisId
   })
-    // With that done, add the note information to the page
+    // Here add the note information to the page
     .then(function(data) {
-      // If there's a note in the article
+      // This is for a note in the article
       if (data.note) {
       $("#notes").append("<h2>" + data.note.title + "</h2>");
       $("#notes").append("<p>" + data.note.body + "</p>");

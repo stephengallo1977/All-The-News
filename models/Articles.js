@@ -20,7 +20,7 @@ var ArticleSchema = new Schema({
 		type: Boolean,
 		default: false
 	},
-	// will be used to connect to notes
+	// This will be used to connect to the notes
 	note: {
 		type: Schema.Types.ObjectId,
 		ref: "Note"
@@ -30,5 +30,5 @@ var ArticleSchema = new Schema({
 // This creates our model from the above schema, using mongoose's model method
 var Article = mongoose.model("Article", ArticleSchema);
 
-// Export the Article model
+// This exports the Article model
 module.exports = Article;
