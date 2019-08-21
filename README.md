@@ -13,3 +13,13 @@ Whenever a user visits a site, this app  scrapes stories from a news website, an
 Users are able to leave comments on the articles displayed and revisit them later. The comments can be saved to the database as well and associated with their articles. Users can also  delete comments left on articles. All stored comments are visible to every user.
 
 This app uses Mongoose, Cheerio, Handlebars, Express, Express-Handlebars, Axios and MongoDB to allow user to scrape NPR's website, and allow users to save articles and add comments to saved articles.
+
+Dependencies used:
+
+    "article": "^1.1.2",
+    "axios": "^0.19.0",
+    "cheerio": "^1.0.0-rc.3",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "mongoose": "^5.6.9",
+    "morgan": "^1.9.1"
