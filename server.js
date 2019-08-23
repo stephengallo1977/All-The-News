@@ -30,7 +30,7 @@ app.use(express.static("public"));
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 // This is for deployment
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
-goose.connect(MONGODB_URI, { useNewUrlParser: true });
+// goose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 // This starts the handlebars
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
@@ -45,5 +45,5 @@ app.use(routes);
 var PORT = process.env.PORT || 3000;
 // This starts server listening on port 3000
 app.listen(PORT, function() {
-	console.log("App running on port 3000!");
+	console.log("App running on port " + PORT );
 });
